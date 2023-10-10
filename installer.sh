@@ -11,7 +11,7 @@ if ! dpkg -s apache2 > /dev/null; then
   echo "Installation Erfolgreich abgeschlossen!"
   # Prüfen ob der Apache Service in systemd enabled ist
   status=$(sudo systemctl is-enabled apache2)
-  if [ %status="disabled" ]; then
+  if [ %status = "disabled" ]; then
     sudo systemctl enable apache2
     echo "Apache2 enabled!"
   else
@@ -19,7 +19,7 @@ if ! dpkg -s apache2 > /dev/null; then
   fi
   # Prüfen ob der Apache Service in systemd gestartet ist
   status=$(sudo systemctl is-active apache2)
-  if [ %status="inactive" ]; then
+  if [ %status = "inactive" ]; then
     sudo systemctl start apache2
     echo "Apache2 gestartet!"
   else
