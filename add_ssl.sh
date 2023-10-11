@@ -25,7 +25,7 @@ openssl genrsa -out $pfad/server.key 2048
 sleep 1
 echo "Signing Request erstellen..."
 sleep 1
-openssl req -new -key $pfad/server.key -out $pfad/server.csr -subj "/C=DE/ST=Thüringen/L=Gera/O=DHGE/CN=$ip"
+openssl req -new -key $pfad/server.key -out $pfad/server.csr -subj "/C=DE/ST=Thueringen/L=Gera/O=DHGE/CN=$ip"
 
 # Schritt 3. Zertifikat für 365 Tage signieren
 sleep 1
