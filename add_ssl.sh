@@ -3,6 +3,13 @@
 echo "Starte Erstellung eines SSL Zertifikates..."
 sleep 2
 
+# Prüfen ob bereits ein Ordner für die Zertifikate vorliegt
+if [ -d $pwd/Zertifikat/ ]
+then
+  echo "Es existiert bereits ein Zertifikat im gleichen Ordner!"
+  exit 1
+fi
+
 # IP-Adresse in einer Variable speichern
 ip=$(hostname -I | awk '{print $1}')
 echo "Deine IP:" $ip
@@ -33,3 +40,4 @@ echo "Zertifikat signieren..."
 sleep 1
 openssl x509 -req -days 365 -in $pfad/server.csr -signkey $pfad/server.key -out $pfad/server.crt
 echo "Zertifikat erstellt!"
+exit 0
