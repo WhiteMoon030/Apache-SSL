@@ -19,17 +19,17 @@ pfad=$(pwd)/Zertifikat
 sleep 1
 echo "SSL Key erstellen..."
 sleep 1
-openssl genrsa -out server.key 2048
+openssl genrsa -out $pfad/server.key 2048
 
 # Schritt 2. Signing Request mit dem Key erstellen
 sleep 1
 echo "Signing Request erstellen..."
 sleep 1
-openssl req -new -key server.key -out server.csr
+openssl req -new -key $pfad/server.key -out $pfad/server.csr
 
 # Schritt 3. Zertifikat für 365 Tage signieren
 sleep 1
 echo "Signing Request erstellen..."
 sleep 1
-openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+openssl x509 -req -days 365 -in $pfad/server.csr -signkey $pfad/server.key -out $pfad/server.crt
 echo "Zertifikat erstellt!"
