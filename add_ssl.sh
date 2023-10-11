@@ -40,4 +40,30 @@ echo "Zertifikat signieren..."
 sleep 1
 openssl x509 -req -days 365 -in $pfad/server.csr -signkey $pfad/server.key -out $pfad/server.crt
 echo "Zertifikat erstellt!"
+
+# Apache Konfiguration anpassen
+if ! dpkg -s apache2 > /dev/null; then
+  echo "Apache Webserver nicht installiert, einbinden wird übersprungen!"
+  exit 0
+fi
+sleep 1
+echo "Anpassen der Apache Konfiguration..."
+sleep 1
+sudo echo "<VirtualHost $ip:443>
+        ServerName $ip
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+          SSLEngine on
+          SSLCertificateFile $pfad/server.crt
+          SSLCertificateKeyFile $pfad/server.key
+          SSLCertificateChainFile $pfad/server.crt
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>" >> /etc/apache2/sites-enabled/000-default.conf
+echo "Neustarten des Apache Services..."
+sleep 1
+sudo systemctl restart apache2.service
+sleep 1
+echo "SSL Zertifkat erfolgreich erstellt und in Apache eingebunden!"
+echo "Über folgende Adresse erreichbar: https://" $ip
 exit 0
