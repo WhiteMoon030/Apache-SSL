@@ -60,10 +60,14 @@ sudo echo "<VirtualHost $ip:443>
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>" >> /etc/apache2/sites-enabled/000-default.conf
+sleep 1
+echo "Aktiveren des SSL Moduls..."
+sudo a2enmod ssl
+sleep 1
 echo "Neustarten des Apache Services..."
 sleep 1
 sudo systemctl restart apache2.service
 sleep 1
 echo "SSL Zertifkat erfolgreich erstellt und in Apache eingebunden!"
-echo "Über folgende Adresse erreichbar: https://" $ip
+echo "Über folgende Adresse erreichbar: https://"$ip
 exit 0
