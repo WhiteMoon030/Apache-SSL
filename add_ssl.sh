@@ -4,7 +4,7 @@ echo "Starte Erstellung eines SSL Zertifikates..."
 sleep 2
 
 # Prüfen ob bereits ein Ordner für die Zertifikate vorliegt
-if [ -d $pwd/Zertifikat/ ]
+if [ -d $(pwd)/Zertifikat/ ]
 then
   echo "Es existiert bereits ein Zertifikat im gleichen Ordner!"
   exit 1
