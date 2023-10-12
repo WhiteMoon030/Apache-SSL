@@ -1,4 +1,10 @@
 #!/usr/bin/bash
+# Überprüfen ob das Skript als Administrator ausgeführt wird
+if [[ $(/usr/bin/id -u) -ne 0 ]]; then
+    echo "Bitte führen Sie dieses Skript mit Administratorrechten aus (sudo/root)!"
+    exit 1
+fi
+
 # Erstellen eines signierten SSL Zertifikates
 echo "Starte Erstellung eines SSL Zertifikates..."
 sleep 2
