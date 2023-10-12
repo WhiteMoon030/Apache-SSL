@@ -34,4 +34,9 @@ else
   echo "Der Apache Webserver ist bereits installiert!"
   exit 1
 fi
+# ServerName in der Apache Konfiguration festlegen
+echo "Server Namen festlegen..."
+sleep 1
+echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf
+systemctl reload apache2
 exit 0
