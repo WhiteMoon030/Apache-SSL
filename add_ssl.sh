@@ -22,6 +22,17 @@ mkdir Zertifikat
 # Pfad zu den Dateien in einer Variable speichern
 pfad=$(pwd)/Zertifikat
 
+# Prüfen ob openssl installiert ist (wird zur Schlüsselerzeugung benötigt)
+if ! dpkg -s openssl > /dev/null; then
+  echo "Openssl nicht installier!"
+  sleep 1
+  echo "Installiere openssl..."
+  sleep 1
+  sudo apt update
+  sudo apt install openssl
+  exit 0
+fi
+
 # Schritt 1. SSL Key erstellen
 sleep 1
 echo "SSL Key erstellen..."
