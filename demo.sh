@@ -13,6 +13,12 @@ cp -r $pfad/demo/unsicher/ /var/www/html
 # Virtual Hosts in der Apache konfigurieren
 # -z um die Datei in einer Zeile einzulesen
 # |1 um das erste auftauchen von /var/www/html zu überschreiben, |2 für das zweite auftreten zu überschreiben
-sudo sed -i -z 's|/var/www/html|/var/www/html/unsicher|1' /etc/apache2/sites-enabled/000-default.conf
-sudo sed -i -z 's|/var/www/html|/var/www/html/sicher|2' /etc/apache2/sites-enabled/000-default.conf
+echo "Demo konfigurieren..."
+sleep 1
+sed -i -z 's|/var/www/html|/var/www/html/unsicher|1' /etc/apache2/sites-enabled/000-default.conf
+sed -i -z 's|/var/www/html|/var/www/html/sicher|2' /etc/apache2/sites-enabled/000-default.conf
+# Apache neustarten
+echo "Apache neustarten..."
+sleep 1
+systemctl restart apache2
 exit 0
