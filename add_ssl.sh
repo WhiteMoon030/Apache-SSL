@@ -60,7 +60,7 @@ fi
 sleep 1
 echo "Anpassen der Apache Konfiguration..."
 sleep 1
-sudo sh -c 'echo "<VirtualHost $ip:443>
+befehl="echo \"<VirtualHost $ip:443>
         ServerName $ip
         ServerAdmin webmaster@localhost
         DocumentRoot /var/www/html
@@ -70,7 +70,8 @@ sudo sh -c 'echo "<VirtualHost $ip:443>
           SSLCertificateChainFile $pfad/server.crt
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>" >> /etc/apache2/sites-enabled/000-default.conf'
+</VirtualHost>\" >> /etc/apache2/sites-enabled/000-default.conf"
+sudo sh -c $befehl
 sleep 1
 echo "Aktiveren des SSL Moduls..."
 sudo a2enmod ssl
