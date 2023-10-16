@@ -10,8 +10,8 @@ sudo cp -r $pfad/demo/unsicher/ /var/www/html
 # |1 um das erste auftauchen von /var/www/html zu überschreiben, |2 für das zweite auftreten zu überschreiben
 echo "Demo konfigurieren..."
 sleep 1
-sudo sed -i -z 's|/var/www/html|/var/www/html/unsicher|1' /etc/apache2/sites-enabled/000-default.conf
-sudo sed -i -z 's|/var/www/html|/var/www/html/sicher|1' /etc/apache2/sites-enabled/apassl.conf
+sudo sed -i -z 's|/var/www/html|/var/www/html/unsicher|1' /etc/apache2/sites-available/000-default.conf
+sudo sed -i -z 's|/var/www/html|/var/www/html/sicher|1' /etc/apache2/sites-available/apassl.conf
 # Apache neustarten
 echo "Apache neustarten..."
 sleep 1
