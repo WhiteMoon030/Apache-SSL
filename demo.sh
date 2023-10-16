@@ -11,7 +11,7 @@ sudo cp -r $pfad/demo/unsicher/ /var/www/html
 echo "Demo konfigurieren..."
 sleep 1
 sudo sed -i -z 's|/var/www/html|/var/www/html/unsicher|1' /etc/apache2/sites-enabled/000-default.conf
-sudo sed -i -z 's|/var/www/html|/var/www/html/sicher|2' /etc/apache2/sites-enabled/000-default.conf
+sudo sed -i -z 's|/var/www/html|/var/www/html/sicher|1' /etc/apache2/sites-enabled/apassl.conf
 # Apache neustarten
 echo "Apache neustarten..."
 sleep 1
