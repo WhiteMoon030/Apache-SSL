@@ -11,21 +11,21 @@ sleep 2
 # Prüfen ob das Paket "apache2" bereits installiert ist
 if ! dpkg -s apache2 > /dev/null; then
   # Falls nicht -> Apache2 installieren
-  apt update
-  apt install -y apache2
+  sudo apt update
+  sudo apt install -y apache2
   echo "Installation Erfolgreich abgeschlossen!"
   # Prüfen ob der Apache-Service in systemd enabled ist
-  status=$(systemctl is-enabled apache2)
+  status=$(sudo systemctl is-enabled apache2)
   if [ %status = "disabled" ]; then
-    systemctl enable apache2
+    sudo systemctl enable apache2
     echo "Apache2 enabled!"
   else
     echo "Apache2 ist bereits enabled!"
   fi
   # Prüfen ob der Apache-Service in systemd gestartet wurde
-  status=$(systemctl is-active apache2)
+  status=$(sudo systemctl is-active apache2)
   if [ %status = "inactive" ]; then
-    systemctl start apache2
+    sudo systemctl start apache2
     echo "Apache2 gestartet!"
   else
     echo "Apache2 ist bereits gestartet!"
@@ -37,12 +37,12 @@ fi
 # Firwall konfigurieren
 echo "Firewall konfigurieren..."
 sleep 1
-ufw allow 80
-ufw allow 443
+sudo ufw allow 80
+sudo ufw allow 443
 # ServerName in der Apache Konfiguration festlegen
 echo "Server Namen festlegen..."
 sleep 1
-echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf
-systemctl restart apache2
+sudo sh -c 'echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf'
+sudo systemctl restart apache2
 firefox $(hostname -I | awk '{print $1}')
 exit 0
