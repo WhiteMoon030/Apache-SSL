@@ -60,6 +60,9 @@ fi
 sleep 1
 echo "Anpassen der Apache Konfiguration..."
 sleep 1
+# Neue Konfigurationsdatei erzeugen
+sudo touch /etc/apache2/sites-available/apassl.conf
+# Neuen Virtualhost mit eingebunden SSL Modul erzeugen
 echo "<VirtualHost $ip:443>
         ServerName $ip
         ServerAdmin webmaster@localhost
@@ -70,10 +73,13 @@ echo "<VirtualHost $ip:443>
           SSLCertificateChainFile $pfad/server.crt
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>" | sudo tee -a /etc/apache2/sites-enabled/000-default.conf >/dev/null
+</VirtualHost>" | sudo tee -a /etc/apache2/sites-available/apassl.conf >/dev/null
 sleep 1
-echo "Aktiveren des SSL Moduls..."
+echo "Aktiveren des Virtualhosts mit SSL Moduls..."
+# SSL Modul herunterladen und aktivieren
 sudo a2enmod ssl
+# Virtualhost mit SSL aktivieren
+sudo a2ensite apassl.conf
 sleep 1
 echo "Neustarten des Apache Services..."
 sleep 1
