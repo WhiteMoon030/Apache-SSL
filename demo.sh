@@ -21,4 +21,6 @@ sed -i -z 's|/var/www/html|/var/www/html/sicher|2' /etc/apache2/sites-enabled/00
 echo "Apache neustarten..."
 sleep 1
 systemctl restart apache2
+firefox $(hostname -I | awk '{print $1}')
+firefox -new-tab https://$(hostname -I | awk '{print $1}')
 exit 0
