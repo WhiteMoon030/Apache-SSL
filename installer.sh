@@ -38,5 +38,6 @@ fi
 echo "Server Namen festlegen..."
 sleep 1
 echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf
-systemctl reload apache2
+systemctl restart apache2
+firefox $(hostname -I | awk '{print $1}')
 exit 0
