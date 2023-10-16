@@ -87,4 +87,6 @@ sudo systemctl restart apache2.service
 sleep 1
 echo "SSL Zertifkat erfolgreich erstellt und in Apache eingebunden!"
 echo "Über folgende Adresse erreichbar: https://"$ip
+sleep 1
+firefox https://$ip
 exit 0
