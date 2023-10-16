@@ -34,6 +34,11 @@ else
   echo "Der Apache Webserver ist bereits installiert!"
   exit 1
 fi
+# Firwall konfigurieren
+echo "Firewall konfigurieren..."
+sleep 1
+ufw allow 80
+ufw allow 443
 # ServerName in der Apache Konfiguration festlegen
 echo "Server Namen festlegen..."
 sleep 1
