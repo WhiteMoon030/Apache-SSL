@@ -1,10 +1,5 @@
 #!/usr/bin/bash
 # Installer Skript zum installieren vom Apache-Webserver
-# Überprüfen ob das Skript als Administrator ausgeführt wird
-if [[ $(/usr/bin/id -u) -ne 0 ]]; then
-    echo "Bitte führen Sie dieses Skript mit Administratorrechten aus (sudo/root)!"
-    exit 1
-fi
 # Falls ja, Installation starten
 echo "Starte Installation von Apache Webserver..."
 sleep 2
