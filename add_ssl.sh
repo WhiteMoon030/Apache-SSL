@@ -1,10 +1,4 @@
 #!/usr/bin/bash
-# Überprüfen ob das Skript als Administrator ausgeführt wird
-if [[ $(/usr/bin/id -u) -ne 0 ]]; then
-    echo "Bitte führen Sie dieses Skript mit Administratorrechten aus (sudo/root)!"
-    exit 1
-fi
-
 # Erstellen eines signierten SSL Zertifikates
 echo "Starte Erstellung eines SSL Zertifikates..."
 sleep 2
@@ -66,7 +60,7 @@ fi
 sleep 1
 echo "Anpassen der Apache Konfiguration..."
 sleep 1
-sudo echo "<VirtualHost $ip:443>
+sudo sh -c 'echo "<VirtualHost $ip:443>
         ServerName $ip
         ServerAdmin webmaster@localhost
         DocumentRoot /var/www/html
@@ -76,7 +70,7 @@ sudo echo "<VirtualHost $ip:443>
           SSLCertificateChainFile $pfad/server.crt
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>" >> /etc/apache2/sites-enabled/000-default.conf
+</VirtualHost>" >> /etc/apache2/sites-enabled/000-default.conf'
 sleep 1
 echo "Aktiveren des SSL Moduls..."
 sudo a2enmod ssl
