@@ -16,3 +16,5 @@ Kopiert die Demo-Html Dateien in /var/www/html und konfiguriert den Apache Webse
 Obwohl mithilfe des *add_ssl.sh* Skriptes eine vollständiges gültiges SSL-Zertifkat erstellt wird, so zeigen doch die meisten
 Browser eine Warnung beim betreten der https-Seite an. Dies ist dadrin begründet, dass hier ein selbst signiertes Zertifikat verwendet wird
 und die meisten Browser nur SSL-Zertifkate die von offiziellen Institutionen signiert wurden, als sicher einstufen.
+Wenn Apache auf einer virtuellen Maschine installiert wird, dann muss für diese eine Netzwerkbrücke als Netzwerkinterface konfiguriert werden.
+Dies hat den Hintergrund das, wenn als Netzwerkinterface NAT konfiguriert wurde, der Apache Webserver nur lokal in der VM zu erreichen ist.
