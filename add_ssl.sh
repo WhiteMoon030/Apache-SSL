@@ -24,7 +24,7 @@ pfad=$(pwd)/Zertifikat
 
 # Prüfen ob openssl installiert ist (wird zur Schlüsselerzeugung benötigt)
 if ! dpkg -s openssl > /dev/null; then
-  echo "Openssl nicht installier!"
+  echo "Openssl nicht installiert!"
   sleep 1
   echo "Installiere openssl..."
   sleep 1
@@ -75,7 +75,7 @@ echo "<VirtualHost $ip:443>
         CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>" | sudo tee -a /etc/apache2/sites-available/apassl.conf >/dev/null
 sleep 1
-echo "Aktiveren des Virtualhosts mit SSL Moduls..."
+echo "Aktivieren des Virtualhosts mit SSL Moduls..."
 # SSL Modul herunterladen und aktivieren
 sudo a2enmod ssl
 # Virtualhost mit SSL aktivieren
@@ -88,5 +88,6 @@ sleep 1
 echo "SSL Zertifkat erfolgreich erstellt und in Apache eingebunden!"
 echo "Über folgende Adresse erreichbar: https://"$ip
 sleep 1
+read -p "Enter drücken um Firefox zu starten..." </dev/tty
 firefox https://$ip
 exit 0
