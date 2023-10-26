@@ -1,4 +1,4 @@
-!#/usr/bin/bash
+#!/usr/bin/bash
 # Skript zum deinstallieren vom Apache-Webserver und alle dazugehörigen Dateien
 # inklusive dieses Verzeichnis
 
