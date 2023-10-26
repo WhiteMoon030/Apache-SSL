@@ -23,17 +23,15 @@ else
 fi
 
 # Fragen ob eine lokale oder externe Verbindung getestet werden soll
-echo "Externe oder lokale Verbindung testen [e/l]? "
 # Eingabe in einer Variable speichern
-read eingabeEL
-if [ $eingabeEL = 'e' ]; then
+read -p "Externe oder lokale Verbindung testen [e/l]: " eingabeEL
+if [ $eingabeEL = "e" ]; then
   # IP-Adresse des Zielsystems abfragen
-  echo "IP-Adresse oder Domain(FQDN): "
-  read eingabeIP
+  read -p "IP-Adresse oder Domain(FQDN): " eingabeIP
   echo "Verbindung testen..."
   sleep 1
   firefox http://$eingabeIP
-else if [ $eingabeEL = 'l' ]; then
+elif [ $eingabeEL = "l" ]; then
   # Überprüfen ob der Apache Webserver installiert ist
   if ! dpkg -s firefox > /dev/null; then
     # Falls nicht -> Fehlermeldung
@@ -41,8 +39,8 @@ else if [ $eingabeEL = 'l' ]; then
     exit 1
   fi
   # Überprüfen ob der Apache Webserver läuft
-  status=$(sudo systemct is-active apache2)
-  if [ %status = 'inactive' ]; then
+  status=$(sudo systemctl is-active apache2)
+  if [ $status = "inactive" ]; then
     echo -e "${Red}Der Apache-Webserver ist nicht aktiv!${Default}"
     sleep 1
     echo "Starte Apache-Webserver..."
