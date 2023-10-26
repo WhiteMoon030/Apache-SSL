@@ -1,6 +1,5 @@
 #!/usr/bin/bash
 # Installer Skript zum installieren vom Apache-Webserver
-# Falls ja, Installation starten
 echo "Starte Installation von Apache Webserver..."
 sleep 2
 # Prüfen ob das Paket "apache2" bereits installiert ist
@@ -29,15 +28,18 @@ else
   echo "Der Apache Webserver ist bereits installiert!"
   exit 1
 fi
-# Firwall konfigurieren
-echo "Firewall konfigurieren..."
-sleep 1
-sudo ufw allow 80
-sudo ufw allow 443
+# ufw Firewall konfigurieren falls diese installiert ist
+if dpkg -s ufw > /dev/null; then
+  # Falls ja --> konfigurieren
+  echo "Firewall (ufw) konfigurieren..."
+  sleep 1
+  # HTTP und HTTPS Port freigeben
+  sudo ufw allow 80
+  sudo ufw allow 443
+fi
 # ServerName in der Apache Konfiguration festlegen
 echo "Server Namen festlegen..."
 sleep 1
 sudo sh -c 'echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf'
 sudo systemctl restart apache2
-firefox $(hostname -I | awk '{print $1}')
 exit 0
