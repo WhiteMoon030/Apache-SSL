@@ -4,6 +4,7 @@ echo "Starte Installation von Apache Webserver..."
 # Variablen für farbige Konsolenausgabe
 Red='\033[1;91m'
 Green='\033[1;92m'
+Default='\033[0m' 
 sleep 2
 # Prüfen ob das Paket "apache2" bereits installiert ist
 # dpkg (Debian Package) prüft mit dem Parameter -s den Status eines bestimmten Pakets
@@ -11,7 +12,7 @@ if ! dpkg -s apache2 > /dev/null; then
   # Falls nicht -> Apache2 installieren
   sudo apt update
   sudo apt install -y apache2
-  echo -e "${Green}Installation erfolgreich abgeschlossen!"
+  echo -e "${Green}Installation erfolgreich abgeschlossen!${Default}"
   # Prüfen ob der Apache-Service in systemd enabled ist
   status=$(sudo systemctl is-enabled apache2)
   if [ %status = "disabled" ]; then
@@ -29,7 +30,7 @@ if ! dpkg -s apache2 > /dev/null; then
     echo "Apache2 ist bereits gestartet!"
   fi
 else
-  echo -e "${Red}Der Apache Webserver ist bereits installiert!"
+  echo -e "${Red}Der Apache Webserver ist bereits installiert!${Default}"
   exit 1
 fi
 # ufw Firewall konfigurieren falls diese installiert ist
@@ -46,5 +47,5 @@ echo "Server Namen festlegen..."
 sleep 1
 sudo sh -c 'echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf'
 sudo systemctl restart apache2
-echo -e "${Green}Einrichtung abgeschlossen!"
+echo -e "${Green}Einrichtung abgeschlossen!${Default}"
 exit 0
