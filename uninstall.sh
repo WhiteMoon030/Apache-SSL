@@ -18,10 +18,10 @@ else
 	sudo apt autoremove apache2 -y
 	sudo apt purge apache2 -y
 	# Überprüfen ob /etc/apache2 und /var/www wirklich gelöscht wurden
-	if [ -d "/etc/apache2"]; then
+	if [ -d "/etc/apache2" ]; then
 		sudo rm -fr /etc/apache2
 	fi
-	if [ -d "/var/www"]; then
+	if [ -d "/var/www" ]; then
 		sudo rm -fr /var/www
 	fi
 	echo -e "${Green}Apache-Webserver erfolgreich deinstalliert!${Default}"
