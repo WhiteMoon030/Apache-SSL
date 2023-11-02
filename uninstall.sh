@@ -17,6 +17,11 @@ else
 	sleep 1
 	sudo apt autoremove apache2 -y
 	sudo apt purge apache2 -y
+ 	# Firewall Regeln löschen, sofern ufw installiert ist
+  	if dpkg -s ufw > /dev/null; then
+   		sudo ufw delete allow 80
+     		sudo ufw delete allow 443
+   	fi
 	# Überprüfen ob /etc/apache2 und /var/www wirklich gelöscht wurden
 	if [ -d "/etc/apache2" ]; then
 		sudo rm -fr /etc/apache2
