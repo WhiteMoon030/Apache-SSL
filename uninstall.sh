@@ -26,13 +26,4 @@ else
 	fi
 	echo -e "${Green}Apache-Webserver erfolgreich deinstalliert!${Default}"
 	sleep 1
-	# Fragen ob dieses Verzeichnis auch gelöscht werden soll
-	read -p "Möchten Sie dieses Verzeichnis ebenfalls deinstallieren? [y/n]" eingabeSicherheit
-	if [ $eingabeSicherheit = n ]; then
-		exit 0
-	else
-		# Verzeichnis des Skriptes in einer Variable speichern
-		verzeichnis="$(cd -P "$(dirname "$0")";pwd)"
-		rm -fr "${verzeichnis:-/tmp/__UNDEFINED__}"
-	fi
 fi
