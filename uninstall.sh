@@ -8,7 +8,7 @@ Green='\033[1;92m'
 Default='\033[0m'
 
 # Sicherheitsfrage
-read -p "Sind Sie sich sicher das Sie den Apache-Webserver deinstallieren möchten? [y/n]" eingabeSicherheit
+read -p "Sind Sie sich sicher das Sie den Apache-Webserver deinstallieren möchten? [y/n] " eingabeSicherheit
 if [ $eingabeSicherheit = n ]; then
 	exit 0
 else
