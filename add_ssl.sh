@@ -96,7 +96,7 @@ echo "Neustarten des Apache Services..."
 sleep 1
 sudo systemctl restart apache2.service
 sleep 1
-echo "${Green}SSL Zertifkat erfolgreich erstellt und in Apache eingebunden!${Default}"
+echo -e "${Green}SSL Zertifkat erfolgreich erstellt und in Apache eingebunden!${Default}"
 echo "Über folgende Adresse erreichbar: https://"$ip
 sleep 1
 read -p "Enter drücken um Firefox zu starten..." </dev/tty
