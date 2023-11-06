@@ -20,7 +20,7 @@ echo "Neuer Ordner erstellt..."
 mkdir Zertifikat
 
 # Pfad zu den Dateien in einer Variable speichern
-pfad=$(pwd)/Zertifikat
+pfad=$(dirname "$0")/Zertifikat
 
 # Prüfen ob openssl installiert ist (wird zur Schlüsselerzeugung benötigt)
 if ! dpkg -s openssl > /dev/null; then
