@@ -11,7 +11,7 @@ Default='\033[0m'
 read -p "Sind Sie sich sicher das Sie den Apache-Webserver deinstallieren möchten? [y/n] " eingabeSicherheit
 if [ $eingabeSicherheit = n ]; then
 	exit 0
-else
+elif [ $eingabeSicherheit = y ]; then
 	# Deinstallation vom Apache-Webserver und Co.
 	echo "Deinstallieren vom Apache-Webserver und allen dazugehörigen Konfigurationsdateien sowie von Abhängigkeiten..."
 	sleep 1
@@ -33,5 +33,9 @@ else
 		sudo rm -fr /var/lib/apache2
 	fi
 	echo -e "${Green}Apache-Webserver erfolgreich deinstalliert!${Default}"
-	sleep 1
+	exit 0
+else
+	# Fehlermeldung und beenden wenn kein zulässiger Buchstabe eingegeben wurde
+  	echo -e "${Red}Fehlerhafte Eingabe!${Default}"
+  	exit 1
 fi
