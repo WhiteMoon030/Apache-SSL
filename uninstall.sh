@@ -22,12 +22,15 @@ else
    		sudo ufw delete allow 80
      		sudo ufw delete allow 443
    	fi
-	# Überprüfen ob /etc/apache2 und /var/www wirklich gelöscht wurden
+	# Überprüfen ob /etc/apache2, /var/www und /var/lib/apache2 wirklich gelöscht wurden
 	if [ -d "/etc/apache2" ]; then
 		sudo rm -fr /etc/apache2
 	fi
 	if [ -d "/var/www" ]; then
 		sudo rm -fr /var/www
+	fi
+ 	if [ -d "/var/lib/apache2" ]; then
+		sudo rm -fr /var/lib/apache2
 	fi
 	echo -e "${Green}Apache-Webserver erfolgreich deinstalliert!${Default}"
 	sleep 1
