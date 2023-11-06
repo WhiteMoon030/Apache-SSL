@@ -1,4 +1,15 @@
 #!/usr/bin/bash
+# Variablen für farbige Konsolenausgabe
+Red='\033[1;91m'
+Green='\033[1;92m'
+Default='\033[0m'
+
+# Prüfen ob dieses Skript auch im gleichen Ordner ausgeführt wird
+if [ $(dirname "$0") != "." ]; then
+  echo -e "${Red}Dieses Skript muss im gleichen Ordner ausgeführt werden in dem es sich befindet!${Default}"
+  exit 1
+fi
+
 # Erstellen eines signierten SSL Zertifikates
 echo "Starte Erstellung eines SSL Zertifikates..."
 sleep 2
@@ -6,13 +17,13 @@ sleep 2
 # Prüfen ob bereits ein Ordner für die Zertifikate vorliegt
 if [ -d $(pwd)/Zertifikat/ ]
 then
-  echo "Es existiert bereits ein Zertifikat im gleichen Ordner!"
+  echo -e "${Red}Es existiert bereits ein Zertifikat im gleichen Ordner!${Default}"
   exit 1
 fi
 
 # IP-Adresse in einer Variable speichern
 ip=$(hostname -I | awk '{print $1}')
-echo "Deine IP:" $ip
+echo -e "Deine IP:${Green} $ip ${Default}"
 sleep 1
 
 # Neuen Ordner für die Zertifikats Dateien erstellen
@@ -20,7 +31,7 @@ echo "Neuer Ordner erstellt..."
 mkdir Zertifikat
 
 # Pfad zu den Dateien in einer Variable speichern
-pfad=$(dirname "$0")/Zertifikat
+pfad=$(pwd)/Zertifikat
 
 # Prüfen ob openssl installiert ist (wird zur Schlüsselerzeugung benötigt)
 if ! dpkg -s openssl > /dev/null; then
@@ -85,7 +96,7 @@ echo "Neustarten des Apache Services..."
 sleep 1
 sudo systemctl restart apache2.service
 sleep 1
-echo "SSL Zertifkat erfolgreich erstellt und in Apache eingebunden!"
+echo "${Green}SSL Zertifkat erfolgreich erstellt und in Apache eingebunden!${Default}"
 echo "Über folgende Adresse erreichbar: https://"$ip
 sleep 1
 read -p "Enter drücken um Firefox zu starten..." </dev/tty
